@@ -3,6 +3,27 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
     <xacro:macro name="panda_gazebo" params="robot_name">
+		
+		<gazebo reference="panda_rightfinger">
+			<sensor type="contact" name="main_bumper">
+				<topic>/bump_topic/rf</topic>
+				<plugin name="gazebo_ros_bumper_controller_rf" filename="libgazebo_ros_bumper.so">   
+					<topic>/bump_topic/rf</topic>
+					<alwaysOn>1</alwaysOn>
+					<updateRate>100.0</updateRate>
+					<bumperTopicName>/panda/bumper/rf</bumperTopicName>
+<!--
+					<frameName>ttest</frameName>
+-->
+				</plugin>
+				<contact>
+					<collision>panda_rightfinger_collision</collision>
+					<topic>/bump_topic/rf</topic>
+				</contact>
+				<alwaysOn>true</alwaysOn>
+				<updateRate>10.0</updateRate>
+			</sensor>
+		</gazebo>
 
         <!-- Link0 -->
         <gazebo reference="${robot_name}_link0">
