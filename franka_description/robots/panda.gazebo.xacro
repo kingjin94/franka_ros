@@ -16,6 +16,9 @@
 					</plugin>
 					<contact>
 						<collision>${link_name}_collision</collision>
+						<xacro:if value="${'panda_link7'==link_name}">
+							<collision>panda_link7_fixed_joint_lump__panda_hand_collision_1</collision>
+						</xacro:if>
 						<topic>/bump_topic/${link_name}</topic>
 					</contact>
 					<alwaysOn>true</alwaysOn>
