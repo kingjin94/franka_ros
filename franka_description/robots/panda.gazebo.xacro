@@ -20,10 +20,10 @@
 							<collision>panda_link7_fixed_joint_lump__panda_hand_collision_1</collision>
 						</xacro:if>
 						<xacro:if value="${'panda_probe_cyl'==link_name}">
-							<collision>panda_link7_fixed_joint_lump__panda_probe_cyl_collision_2</collision>
+							<collision>panda_probe_cyl_collision</collision>
 						</xacro:if>
 						<xacro:if value="${'panda_probe_ball'==link_name}">
-							<collision>panda_link7_fixed_joint_lump__panda_probe_ball_collision_3</collision>
+							<collision>panda_probe_cyl_fixed_joint_lump__panda_probe_ball_collision_1</collision>
 						</xacro:if>
 						<topic>/bump_topic/${link_name}</topic>
 					</contact>
@@ -46,6 +46,18 @@
 		<xacro:add_collision_sensing link_name="${robot_name}_leftfinger"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_probe_cyl"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_probe_ball"/>
+		
+		<gazebo reference="${robot_name}_probe_cyl_joint">
+			<provideFeedback>true</provideFeedback>
+		</gazebo>
+		
+		<gazebo>
+			<plugin name="ft_sensor_tool" filename="libgazebo_ros_ft_sensor.so">
+				<updateRate>100.0</updateRate>
+				<topicName>${robot_name}/ft/tool</topicName>
+				<jointName>${robot_name}_probe_cyl_joint</jointName>
+			</plugin>
+		</gazebo>
 
         <!-- Link0 -->
         <gazebo reference="${robot_name}_link0">

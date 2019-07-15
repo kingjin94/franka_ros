@@ -86,11 +86,12 @@
     </joint>
     
         
-    <joint name="${ns}_probe_cyl_joint" type="fixed">
+    <joint name="${ns}_probe_cyl_joint" type="revolute">
       <parent link="${ns}_hand"/>
       <child link="${ns}_probe_cyl"/>
       <origin xyz="0 0 0.12" rpy="0 0 0"/>
       <axis xyz="0 1 0"/>
+      <limit effort="20" lower="0.0" upper="0.0" velocity="0.0"/>
     </joint>
     
     <link name="${ns}_probe_cyl">
