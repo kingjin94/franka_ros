@@ -19,6 +19,12 @@
 						<xacro:if value="${'panda_link7'==link_name}">
 							<collision>panda_link7_fixed_joint_lump__panda_hand_collision_1</collision>
 						</xacro:if>
+						<xacro:if value="${'panda_probe_cyl'==link_name}">
+							<collision>panda_link7_fixed_joint_lump__panda_probe_cyl_collision_2</collision>
+						</xacro:if>
+						<xacro:if value="${'panda_probe_ball'==link_name}">
+							<collision>panda_link7_fixed_joint_lump__panda_probe_ball_collision_3</collision>
+						</xacro:if>
 						<topic>/bump_topic/${link_name}</topic>
 					</contact>
 					<alwaysOn>true</alwaysOn>
@@ -38,6 +44,8 @@
 		<xacro:add_collision_sensing link_name="${robot_name}_hand"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_rightfinger"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_leftfinger"/>
+		<xacro:add_collision_sensing link_name="${robot_name}_probe_cyl"/>
+		<xacro:add_collision_sensing link_name="${robot_name}_probe_ball"/>
 
         <!-- Link0 -->
         <gazebo reference="${robot_name}_link0">
