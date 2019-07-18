@@ -53,7 +53,7 @@
 		
 		<gazebo>
 			<plugin name="ft_sensor_tool" filename="libgazebo_ros_ft_sensor.so">
-				<updateRate>100.0</updateRate>
+				<updateRate>1000.0</updateRate>
 				<topicName>${robot_name}/ft/tool</topicName>
 				<jointName>${robot_name}_probe_cyl_joint</jointName>
 			</plugin>
