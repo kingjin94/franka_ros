@@ -4,6 +4,7 @@
 
     <xacro:macro name="panda_gazebo" params="robot_name">
 		
+		<!-- Add bumpers to whole robot -->
 		<xacro:macro name="add_collision_sensing" params="link_name">
 			<gazebo reference="${link_name}">
 				<sensor type="contact" name="${link_name}_bumper">
@@ -24,6 +25,9 @@
 						</xacro:if>
 						<xacro:if value="${'panda_probe_ball'==link_name}">
 							<collision>panda_probe_cyl_fixed_joint_lump__panda_probe_ball_collision_1</collision>
+						</xacro:if>
+						<xacro:if value="${'panda_camera'==link_name}">
+							<collision>panda_link7_fixed_joint_lump__panda_camera_collision_2</collision>
 						</xacro:if>
 						<topic>/bump_topic/${link_name}</topic>
 					</contact>
@@ -46,7 +50,9 @@
 		<xacro:add_collision_sensing link_name="${robot_name}_leftfinger"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_probe_cyl"/>
 		<xacro:add_collision_sensing link_name="${robot_name}_probe_ball"/>
+		<xacro:add_collision_sensing link_name="${robot_name}_camera"/>
 		
+		<!-- FT sensing at probe -->
 		<gazebo reference="${robot_name}_probe_cyl_joint">
 			<provideFeedback>true</provideFeedback>
 		</gazebo>
@@ -57,6 +63,57 @@
 				<topicName>${robot_name}/ft/tool</topicName>
 				<jointName>${robot_name}_probe_cyl_joint</jointName>
 			</plugin>
+		</gazebo>
+		
+		<!-- Camera -->
+		<gazebo reference="${robot_name}_camera">
+			<material>Gazebo/Red</material>
+    
+			<sensor type="depth" name="depth_camera">
+				<always_on>true</always_on>
+				<visualize>true</visualize> 
+				<update_rate>30.0</update_rate>
+				<topic>${robot_name}/depth_camera/depth_image</topic>
+				<camera name="head_depth">
+					<horizontal_fov>1.047198</horizontal_fov>
+					<image>
+						<width>640</width>
+						<height>480</height>
+						<format>R8G8B8</format>
+					</image>
+					<depth_camera></depth_camera>
+					<clip>
+						<near>0.05</near>
+						<far>3</far>
+					</clip>
+				</camera>
+				<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+					<baseline>0.2</baseline>
+					<alwaysOn>true</alwaysOn>
+					<!-- Keep this zero, update_rate in the parent <sensor> tag
+					will control the frame rate. -->
+					<updateRate>0.0</updateRate>
+					<robotNamespace>${robot_name}</robotNamespace>
+					<cameraName>depth_camera</cameraName>
+					<imageTopicName>image</imageTopicName>
+					<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+					<depthImageTopicName>depth_image</depthImageTopicName>
+					<depthImageInfoTopicName>depth_camera_info</depthImageInfoTopicName>
+					<pointCloudTopicName>points</pointCloudTopicName>
+					<frameName>${robot_name}_camera</frameName>
+					<pointCloudCutoff>0.05</pointCloudCutoff>
+					<distortionK1>0</distortionK1>
+					<distortionK2>0</distortionK2>
+					<distortionK3>0</distortionK3>
+					<distortionT1>0</distortionT1>
+					<distortionT2>0</distortionT2>
+					<CxPrime>0</CxPrime>
+					<Cx>0</Cx>
+					<Cy>0</Cy>
+					<focalLength>0</focalLength>
+					<hackBaseline>0</hackBaseline>
+				</plugin>
+			</sensor>
 		</gazebo>
 
         <!-- Link0 -->
