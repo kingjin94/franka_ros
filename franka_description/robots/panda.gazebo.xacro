@@ -77,15 +77,15 @@
 				<camera name="head_depth">
 					<horizontal_fov>1.047198</horizontal_fov> <!-- 60 degree -->
 					<image>
-						<width>240</width>
-						<height>180</height>
+						<width>1024</width>
+						<height>768</height>
 						<format>R8G8B8</format>
 						<!-- How to determine? At 2 m we see a hor. len. l / 2m = tan(fov/2) twice
 							<=> l = 2*tan(fov/2) -> resolution in m/px is 2l/width
 							2l = 2,309m
 							fov | width | res
 							60d | 160   | 1.44 cm/px
-							60d | 240   | 9.62 mm/px
+							60d | 240   | 9.62 mm/px <-
 							60d | 320   | 7.21 mm/px
 							60d | 640   | 3.61 mm/px
 						-->
