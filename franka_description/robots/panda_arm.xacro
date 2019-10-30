@@ -68,7 +68,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint1" type="revolute">
-      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-2.60757" soft_upper_limit="2.60757"/> <!-- 0.9 of original to discourage planning next to them -->
       <origin rpy="0 0 0" xyz="0 0 0.333"/>
       <parent link="${arm_id}_link0"/>
       <child link="${arm_id}_link1"/>
@@ -103,7 +103,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint2" type="revolute">
-      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.7628" soft_upper_limit="1.7628"/>
+      <safety_controller k_position="100.0" k_velocity="40.0" soft_lower_limit="-1.58652" soft_upper_limit="1.58652"/>
       <origin rpy="${-pi/2} 0 0" xyz="0 0 0"/>
       <parent link="${arm_id}_link1"/>
       <child link="${arm_id}_link2"/>
@@ -138,7 +138,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint3" type="revolute">
-      <safety_controller k_position="40.0" k_velocity="16.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <safety_controller k_position="40.0" k_velocity="16.0" soft_lower_limit="-2.60757" soft_upper_limit="2.60757"/>
       <origin rpy="${pi/2} 0 0" xyz="0 -0.316 0"/>
       <parent link="${arm_id}_link2"/>
       <child link="${arm_id}_link3"/>
@@ -173,7 +173,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint4" type="revolute">
-      <safety_controller k_position="40.0" k_velocity="16.0" soft_lower_limit="-3.0718" soft_upper_limit="-0.0698"/>
+      <safety_controller k_position="40.0" k_velocity="16.0" soft_lower_limit="-2.76462" soft_upper_limit="0.1"/>
       <origin rpy="${pi/2} 0 0" xyz="0.0825 0 0"/>
       <parent link="${arm_id}_link3"/>
       <child link="${arm_id}_link4"/>
@@ -208,7 +208,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint5" type="revolute">
-      <safety_controller k_position="20.0" k_velocity="8.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <safety_controller k_position="20.0" k_velocity="8.0" soft_lower_limit="-2.60757" soft_upper_limit="2.60757"/>
       <origin rpy="${-pi/2} 0 0" xyz="-0.0825 0.384 0"/>
       <parent link="${arm_id}_link4"/>
       <child link="${arm_id}_link5"/>
@@ -243,7 +243,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint6" type="revolute">
-      <safety_controller k_position="10.0" k_velocity="4.0" soft_lower_limit="-0.0175" soft_upper_limit="3.7525"/>
+      <safety_controller k_position="10.0" k_velocity="4.0" soft_lower_limit="0.1" soft_upper_limit="3.37725"/>
       <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
       <parent link="${arm_id}_link5"/>
       <child link="${arm_id}_link6"/>
@@ -278,7 +278,7 @@
       <!-- end for simulation -->
     </link>
     <joint name="${arm_id}_joint7" type="revolute">
-      <safety_controller k_position="10.0" k_velocity="4.0" soft_lower_limit="-2.8973" soft_upper_limit="2.8973"/>
+      <safety_controller k_position="10.0" k_velocity="4.0" soft_lower_limit="-2.60757" soft_upper_limit="2.60757"/>
       <origin rpy="${pi/2} 0 0" xyz="0.088 0 0"/>
       <parent link="${arm_id}_link6"/>
       <child link="${arm_id}_link7"/>
